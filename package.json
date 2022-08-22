@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/tysongf/kexoplex/issues"
   },
-  "homepage": "https://github.com/tysongf/kexoplex#readme"
+  "homepage": "https://github.com/tysongf/kexoplex#readme",
+  "dependencies": {
+    "csv-parse": "^5.3.0"
+  }
 }
