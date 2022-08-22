@@ -1,14 +1,15 @@
 {
-  "name": "kexoplex",
+  "name": "exoplex",
   "version": "0.0.1",
-  "description": "Kepler Exoplanet Explorer",
-  "main": "main.js",
+  "description": "Explore exoplanets discovered by the Kepler space telescope.",
+  "main": "exoplex.js",
   "scripts": {
+    "dev": "./node_modules/.bin/nodemon exoplex.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tysongf/kexoplex.git"
+    "url": "git+https://github.com/tysongf/exoplex.git"
   },
   "keywords": [
     "kepler",
@@ -18,10 +19,11 @@
   "author": "Tyson Fritz",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tysongf/kexoplex/issues"
+    "url": "https://github.com/tysongf/exoplex/issues"
   },
-  "homepage": "https://github.com/tysongf/kexoplex#readme",
+  "homepage": "https://github.com/tysongf/exoplex#readme",
   "dependencies": {
-    "csv-parse": "^5.3.0"
+    "csv-parse": "^5.3.0",
+    "nodemon": "^2.0.19"
   }
 }
