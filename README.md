@@ -1,2 +1,2 @@
-# kexoplex
-Kepler Exoplanet Explorer
+# exoplex
+Exoplanet Explorer
