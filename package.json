@@ -1,0 +1,24 @@
+{
+  "name": "kexoplex",
+  "version": "0.0.1",
+  "description": "Kepler Exoplanet Explorer",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tysongf/kexoplex.git"
+  },
+  "keywords": [
+    "kepler",
+    "exoplanet",
+    "research"
+  ],
+  "author": "Tyson Fritz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tysongf/kexoplex/issues"
+  },
+  "homepage": "https://github.com/tysongf/kexoplex#readme"
+}
