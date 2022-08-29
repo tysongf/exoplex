@@ -17,7 +17,7 @@ function isHabitable(planet) {
 
 function loadPlanetsData() {
    return new Promise((resolve, reject) => {
-      fs.createReadStream(path.join(__dirname, '..', 'data', '/koi_data.csv'))
+      fs.createReadStream(path.join(__dirname, '..', '..', 'data', '/koi_data.csv'))
       //pipe the stream to the CSV parser to break the data stream into rows
       .pipe(parse({
          comment: '#',
