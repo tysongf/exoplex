@@ -21,7 +21,7 @@ mongoose.connection.on('error', (error) => {
 });
 
 async function startServer() {
-   //Connect to Mongo DB using modern MongoDB settings
+   //Connect to Mongo DB with mongoose
    await mongoose.connect(MONGO_URL);
    await loadPlanetsData();
    api_server.listen(API_PORT, () => {
