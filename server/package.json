@@ -7,6 +7,7 @@
     "load-planets": "node ./commands/load-planets.js",
     "watch": "nodemon src/server.js",
     "start": "node src/server.js",
+    "cluster": "pm2 start src/server.js -i max",
     "test": "jest",
     "test-watch": "jest --watch"
   },
