@@ -13,30 +13,25 @@ async function getAllLaunches() {
 
 async function addNewLaunch(launch) {
 
-   const planet = await planets.findOne({ keplerName: launch.target });
-
-   if(!planet) {
-      console.log("invalid planet");
+   //Check for referential integrity (does the planet exist?)
+   if(!await planets.findOne({ keplerName: launch.target })) {
       throw new Error(`Invalid planet name: ${launch.target}`);
    }
 
-   await launches.updateOne(
-      { flightNumber: launch.flightNumber },
-      launch,
-      { upsert: true }
-   )
-
    latestFlightNumber++;
 
-   Object.assign(launch, { //patch missing input
+   //add default values to launch object
+   Object.assign(launch, {
       customers: ['ZTM', 'NASA'],
       flightNumber: latestFlightNumber,
       upcoming: true,
       success: true
    })
 
+   //Add the new launch to MongoDB
    await launches.updateOne({flightNumber: latestFlightNumber}, launch, { upsert: true });
 
+   //Return the launch from MongoDB
    return await launches.findOne({ flightNumber: latestFlightNumber}, { '_id': 0, '__v': 0 });
 }
 
