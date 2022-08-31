@@ -7,12 +7,11 @@ async function httpGetAllLaunches(req, res) {
 }
 
 async function httpPostLaunch(req, res) {
-   const newLaunch = req.body;
+   let newLaunch = req.body;
 
-   if(!newLaunch.mission || !newLaunch.launchDate || !newLaunch.rocket
-      || !newLaunch.target) {
-         return res.status(400).json({error: 'Missing required launch property'});
-      }
+   if(!newLaunch.mission || !newLaunch.launchDate || !newLaunch.rocket || !newLaunch.target) {
+      return res.status(400).json({error: 'Missing required launch property'});
+   }
 
    newLaunch.launchDate = new Date(newLaunch.launchDate);
 
@@ -20,9 +19,17 @@ async function httpPostLaunch(req, res) {
       return res.status(400).json({error: 'Invalid launch date.'});
    }
 
-   return res.status(201).json(
-      await launches.addNewLaunch(newLaunch)
-   )
+   if(new Date() > newLaunch.launchDate) {
+      return res.status(400).json({error: 'Launch Date must be future.'});
+   }
+
+   try {
+      return res.status(201).json(await launches.addNewLaunch(newLaunch));
+   }
+   catch(err) {
+      return res.status(400).json({error: err.message});
+   }
+
 }
 
 async function httpAbortLaunch(req, res) {

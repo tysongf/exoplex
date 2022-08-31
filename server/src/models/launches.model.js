@@ -1,14 +1,7 @@
 const launches = require('./launches.mongo');
+const planets = require('./planets.mongo');
 
 let latestFlightNumber = 100;
-
-async function saveLaunch(launch) {
-   await launches.updateOne(
-      { flightNumber: launch.flightNumber },
-      launch,
-      { upsert: true }
-   )
-}
 
 async function existsLaunchWithId(id) {
    return await launches.findOne({ flightNumber: id });
@@ -19,6 +12,20 @@ async function getAllLaunches() {
 }
 
 async function addNewLaunch(launch) {
+
+   const planet = await planets.findOne({ keplerName: launch.target });
+
+   if(!planet) {
+      console.log("invalid planet");
+      throw new Error(`Invalid planet name: ${launch.target}`);
+   }
+
+   await launches.updateOne(
+      { flightNumber: launch.flightNumber },
+      launch,
+      { upsert: true }
+   )
+
    latestFlightNumber++;
 
    Object.assign(launch, { //patch missing input
@@ -47,7 +54,6 @@ async function abortLaunchById(id) {
 
 module.exports = {
    existsLaunchWithId,
-   saveLaunch,
    getAllLaunches,
    addNewLaunch,
    getLaunch,
