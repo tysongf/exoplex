@@ -1,7 +1,7 @@
 const http = require('http');
 const mongoose = require('mongoose');
 const api = require('./api');
-const loadPlanetsData = require('./commands/load-planets');
+const loadPlanetsData = require('./commands/loadPlanets.command');
 const api_server = http.createServer(api);
 const API_PORT = process.env.API_PORT || 8000;
 

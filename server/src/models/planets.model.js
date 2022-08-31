@@ -1,3 +1,17 @@
-const planets = [];
+const planets = require('./planets.mongo');
 
-module.exports = planets;
+async function upsertPlanet(planet) {
+   await planets.updateOne(
+      { keplerName: planet.kepler_name },
+      { keplerName: planet.kepler_name },
+      { upsert: true });
+}
+
+async function getAllPlanets() {
+   return await planets.find({});
+}
+
+module.exports = {
+   upsertPlanet,
+   getAllPlanets
+};

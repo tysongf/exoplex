@@ -4,7 +4,6 @@
   "description": "Explore exoplanets discovered by the Kepler space telescope.",
   "main": "exoplex.js",
   "scripts": {
-    "load-planets": "node ./commands/load-planets.js",
     "watch": "nodemon src/server.js",
     "start": "node src/server.js",
     "cluster": "pm2 start src/server.js -i max",

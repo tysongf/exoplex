@@ -15,7 +15,7 @@ function isHabitable(planet) {
        && planet['koi_prad'] <= max_prad
 }
 
-function loadPlanetsData() {
+async function loadPlanetsData() {
    return new Promise((resolve, reject) => {
       fs.createReadStream(path.join(__dirname, '..', '..', 'data', '/koi_data.csv'))
       //pipe the stream to the CSV parser to break the data stream into rows
@@ -24,19 +24,21 @@ function loadPlanetsData() {
          columns: true
       }))
       //process each row of data
-      .on('data', (data) => {
+      .on('data', async (data) => {
          total_planets++;
          if(isHabitable(data)) {
-            planets.push(data);
+            console.log(`Loading ${data.kepler_name} into MongoDB`);
+            await planets.upsertPlanet(data);
          }
       })
       .on('error', (error) => {
          console.log(error);
          reject(error);
       })
-      .on('end', () => {
+      .on('end', async () => {
          //console log a report of all habitable planets.
-         console.log(`Planets Loaded: ${planets.length}/${total_planets}`);
+         const numHabitablePlanets = (await planets.getAllPlanets()).length;
+         console.log(`Planets Loaded: ${numHabitablePlanets}/${total_planets}`);
          resolve();
       });
    });
