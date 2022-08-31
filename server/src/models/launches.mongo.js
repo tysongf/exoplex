@@ -13,3 +13,6 @@ const launchesSchema = new mongoose.Schema(
       success: { type: Boolean, required: true, default: true }
    }
 );
+
+//Compile the model. Connects launchesSchema with the 'launches' collection.
+module.exports = mongoose.model('Launch', launchesSchema);
