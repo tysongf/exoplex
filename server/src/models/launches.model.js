@@ -1,55 +1,53 @@
-const launches = new Map();
+const launches = require('./launches.mongo');
 
 let latestFlightNumber = 100;
 
-const launch = {
-   flightNumber: 100,
-   mission: 'Kepler Exploration X',
-   rocket: 'Explorer IS1',
-   launchDate: new Date('December 27, 2030'),
-   target: 'Kepler-442 b',
-   customers: ['ZTM', 'NASA'],
-   upcoming: true,
-   success: true
+async function saveLaunch(launch) {
+   await launches.updateOne(
+      { flightNumber: launch.flightNumber },
+      launch,
+      { upsert: true }
+   )
 }
 
-launches.set(launch.flightNumber, launch);
-
-function existsLaunchWithId(id) {
-   return launches.has(id);
+async function existsLaunchWithId(id) {
+   return await launches.findOne({ flightNumber: id });
 }
 
-function getAllLaunches() {
-   return Array.from(launches.values());
+async function getAllLaunches() {
+   return await launches.find({}, { '_id': 0, '__v': 0 });
 }
 
-function addNewLaunch(launch) {
+async function addNewLaunch(launch) {
    latestFlightNumber++;
-   launches.set(
-      latestFlightNumber,
-      Object.assign(launch, { //patch missing input
-         customers: ['ZTM', 'NASA'],
-         flightNumber: latestFlightNumber,
-         upcoming: true,
-         success: true
-      })
-   );
-   return launches.get(latestFlightNumber);
+
+   Object.assign(launch, { //patch missing input
+      customers: ['ZTM', 'NASA'],
+      flightNumber: latestFlightNumber,
+      upcoming: true,
+      success: true
+   })
+
+   await launches.updateOne({flightNumber: latestFlightNumber}, launch, { upsert: true });
+
+   return await launches.findOne({ flightNumber: latestFlightNumber}, { '_id': 0, '__v': 0 });
 }
 
-function getLaunch(id) {
-   return launches.get(id);
+async function getLaunch(id) {
+   return await launches.findOne({ flightNumber: id }, { '_id': 0, '__v': 0 });
 }
 
-function abortLaunchById(id) {
-   const aborted = getLaunch(id);
+async function abortLaunchById(id) {
+   const aborted = await getLaunch(id);
    aborted.upcoming = false;
    aborted.success = false;
-   return aborted;
+   
+   return await aborted.save();
 }
 
 module.exports = {
    existsLaunchWithId,
+   saveLaunch,
    getAllLaunches,
    addNewLaunch,
    getLaunch,

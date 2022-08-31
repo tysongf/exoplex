@@ -1,12 +1,12 @@
 const launches = require('../models/launches.model');
 
-function httpGetAllLaunches(req, res) {
+async function httpGetAllLaunches(req, res) {
    return res.status(200).json(
-      launches.getAllLaunches()
+      await launches.getAllLaunches()
    );
 }
 
-function httpPostLaunch(req, res) {
+async function httpPostLaunch(req, res) {
    const newLaunch = req.body;
 
    if(!newLaunch.mission || !newLaunch.launchDate || !newLaunch.rocket
@@ -21,13 +21,13 @@ function httpPostLaunch(req, res) {
    }
 
    return res.status(201).json(
-      launches.addNewLaunch(newLaunch)
+      await launches.addNewLaunch(newLaunch)
    )
 }
 
-function httpAbortLaunch(req, res) {
+async function httpAbortLaunch(req, res) {
    const launchId = Number(req.params.id); //launches key is an integer
-   if(!launches.existsLaunchWithId(launchId)) {
+   if(await !launches.existsLaunchWithId(launchId)) {
       res.status(404).json({ 'error': `Launch ${launchId} not found.`});
    }
    res.status(200).json(launches.abortLaunchById(launchId));
