@@ -6,16 +6,16 @@ const morgan = require('morgan');
 const planetsRouter = require('./routers/planets.router');
 const launchesRouter = require('./routers/launches.router');
 
-const api = express();
+const app = express();
 
-api.use(cors({ origin: 'http://localhost:3000' }));
-api.use(morgan('combined'));
-api.use(express.json());
-api.use(planetsRouter);
-api.use(launchesRouter);
-api.use(express.static(path.join(__dirname, '..', 'public')));
-api.get('/*', (req, res) => {
+app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(morgan('combined'));
+app.use(express.json());
+app.use(planetsRouter);
+app.use(launchesRouter);
+app.use(express.static(path.join(__dirname, '..', 'public')));
+app.get('/*', (req, res) => {
    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 })
 
-module.exports = api;
+module.exports = app;
