@@ -5,18 +5,6 @@ const axios = require('axios');
 const DEFAULT_FLIGHT_NUMBER = 100;
 const SPACEX_LAUNCH_QUERY_URL = 'https://api.spacexdata.com/v4/launches/query';
 
-const launchExample = {
-   //spaceX mapping in comments
-   flightNumber: 100, //flight_number
-   mission: 'Kepler Exploration X', //name (launch name)
-   rocket: 'Explorer 1', //rocket.name
-   launchDate: new Date('October 3, 2016'), //
-   target: 'Kepler-442 b', //not applicable
-   customers: ['ZTM', 'NASA'], //payload.customers (launches may have multiple payloads)
-   upcoming: true, //upcoming
-   success: true, //success
-}
-
 async function findLaunch(filter) {
    return await launches.findOne(filter);
 }
