@@ -3,8 +3,8 @@ const launchesController = require('../controllers/launches.controller');
 
 const launchesRouter = express.Router();
 
-launchesRouter.get('/launches', launchesController.httpGetAllLaunches);
-launchesRouter.post('/launches', launchesController.httpPostLaunch);
-launchesRouter.delete('/launches/:id', launchesController.httpAbortLaunch)
+launchesRouter.get('/', launchesController.httpGetAllLaunches);
+launchesRouter.post('/', launchesController.httpPostLaunch);
+launchesRouter.delete('/:id', launchesController.httpAbortLaunch)
 
 module.exports = launchesRouter;
