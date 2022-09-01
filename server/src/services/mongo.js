@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const DB_CLUSTER = 'cluster0';
-const DB_NAME = 'nasa';
-const DB_USER = 'nasa';
-const DB_PASSWORD = '1yxvWqcpXquiurnK';
+const MONGO_CLUSTER = process.env.MONGO_CLUSTER;
+const MONGO_DB_NAME = process.env.MONGO_DB_NAME;
+const MONGO_DB_USER = process.env.MONGO_DB_USER;
+const MONGO_DB_PASSWORD = process.env.MONGO_DB_PASSWORD;
 
-const MONGO_URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_CLUSTER}.dtleewu.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
+const MONGO_URL = `mongodb+srv://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@${MONGO_CLUSTER}.dtleewu.mongodb.net/${MONGO_DB_NAME}?retryWrites=true&w=majority`;
 
 mongoose.connection.once('open', () => {
    console.log("MongoDB Connection Open!");

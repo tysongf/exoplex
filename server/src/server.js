@@ -1,3 +1,4 @@
+require('dotenv').config(); //load environment variables
 const { mongoConnect } = require('./services/mongo.js');
 const { loadSpacexData } = require('./models/launches.model');
 const loadPlanetsData = require('./commands/loadPlanets.command.js');
