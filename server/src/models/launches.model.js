@@ -91,8 +91,11 @@ async function getNewFlightNumber() {
    return latestLaunch.flightNumber + 1;
 }
 
-async function getAllLaunches() {
-   return await launches.find({}, { '_id': 0, '__v': 0 });
+async function getAllLaunches(limit, page) {
+   return await launches
+   .find({}, { '_id': 0, '__v': 0 })
+   .limit(limit)
+   .skip((page -1) * limit);
 }
 
 async function addNewLaunch(launch) {
