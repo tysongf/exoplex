@@ -91,11 +91,12 @@ async function getNewFlightNumber() {
    return latestLaunch.flightNumber + 1;
 }
 
-async function getAllLaunches(limit, page) {
+async function getAllLaunches(limit, skip) {
    return await launches
    .find({}, { '_id': 0, '__v': 0 })
+   .sort({ flightNumber: 1 })
    .limit(limit)
-   .skip((page -1) * limit);
+   .skip(skip);
 }
 
 async function addNewLaunch(launch) {

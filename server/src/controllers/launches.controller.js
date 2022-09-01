@@ -6,10 +6,13 @@ const {
    scheduleNewLaunch
 } = require('../models/launches.model');
 
+const { getPagination } = require('../services/query.js');
+
 async function httpGetAllLaunches(req, res) {
-   console.log(req.query);
+   const { limit, skip } = getPagination(req.query);
+
    return res.status(200).json(
-      await getAllLaunches(req.query.limit, req.query.page)
+      await getAllLaunches(limit, skip)
    );
 }
 
