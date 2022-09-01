@@ -3,6 +3,9 @@
   "version": "0.0.2",
   "description": "Explore exoplanets discovered by the Kepler space telescope.",
   "main": "exoplex.js",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "scripts": {
     "watch": "nodemon src/server.js",
     "start": "node src/server.js",
@@ -36,5 +39,5 @@
   "devDependencies": {
     "jest": "^29.0.1",
     "supertest": "^6.2.4"
-  }
+  }  
 }
