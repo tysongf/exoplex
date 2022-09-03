@@ -7,7 +7,6 @@ const apiV1 = require('./routers/api.v1');
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:3000' })); //deprecated. Client using same port as server
 app.use(morgan('combined')); //http logging to console
 app.use(express.json()); //parse json requests
 
