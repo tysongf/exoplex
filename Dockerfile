@@ -11,9 +11,9 @@ COPY server/package*.json server/
 RUN npm run install-server --only=production
 
 COPY client/ client/
-COPY server/ server/
-
 RUN npm run build --prefix client
+
+COPY server/ server/
 
 USER node
 
