@@ -17,7 +17,7 @@ const styles = theme => ({
   },
   logo: {
     display: "inherit",
-    marginTop: "15px",
+    marginTop: "16px",
   },
   nav: {
     display: "inherit",
@@ -26,8 +26,8 @@ const styles = theme => ({
     display: "inherit",
     fontWeight: "bold",
     marginLeft: "10px",
-    marginRight: "15px",
-    fontSize: 28,
+    marginRight: "20px",
+    fontSize: 24,
   },
   clickable: {
     fontSize: 21,
@@ -71,9 +71,9 @@ const Header = props => {
         height: "50px",
         width: "auto",
       }} />
-      <Logo animate size={50} className={classes.logo} layer="header" />
+      <Logo animate size={48} className={classes.logo} layer="header" />
       <Words animate className={classes.banner}>
-        NASA Mission Control
+        Exoplex - Mission Control
       </Words>
       <nav className={`${classes.nav}`}>
         <Clickable className={classes.clickable} onClick={onNav}>

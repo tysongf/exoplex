@@ -46,8 +46,9 @@ const Upcoming = props => {
   }, [launches, abortLaunch, classes.link]);
 
   return <Appear id="upcoming" animate show={entered}>
-    <Paragraph>Upcoming missions including both SpaceX launches and newly scheduled Zero to Mastery rockets.</Paragraph>
-    <Words animate>Warning! Clicking on the ✖ aborts the mission.</Words>
+    <Paragraph>Upcoming missions including SpaceX.</Paragraph>
+    <Words animate>Warning! Click ✖ to abort mission.</Words>
+    <br></br><br></br>
     <Table animate show={entered}>
       <table style={{tableLayout: "fixed"}}>
         <thead>
