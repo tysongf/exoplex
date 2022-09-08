@@ -1,6 +1,8 @@
 # exoplex
 Kepler Exoplanet Explorer
 
+<a href="http://44.203.114.33:8000/">Live Demo</a>
+
 ![exoplex architecture](https://github.com/tysongf/exoplex/blob/master/exoplex_architecture.png?raw=true)
 
 ## Getting Started
