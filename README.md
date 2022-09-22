@@ -1,4 +1,5 @@
 # exoplex
+
 Kepler Exoplanet Explorer
 
 <a href="http://www.neologic.ca:8000/">Live Demo</a>
@@ -19,9 +20,10 @@ Kepler Exoplanet Explorer
 
 ## Running the Tests
 
-To run any automated tests, run `npm test`. This will: 
-* Run all the client-side tests: `npm test --prefix client`
-* Run all the server-side tests: `npm test --prefix server` 
+To run any automated tests, run `npm test`. This will:
+
+-  Run all the client-side tests: `npm test --prefix client`
+-  Run all the server-side tests: `npm test --prefix server`
 
 ## Docker
 
@@ -30,16 +32,17 @@ To run any automated tests, run `npm test`. This will:
 3. Run `docker run -it -p 8000:8000 tysongf/exoplex`
 
 ## EC2 Deployment
+
 1. sudo yum update -y
 2. sudo yum install docker
 3. sudo service docker start
 4. sudo usermod -a -G docker ec2-user
 5. exit (and then log back in)
 6. docker login
-7. docker pull -t tysongf/exoplex
-8. docker run --restart=always -p 8000:8000 tysongf/exoplex
+7. docker run --restart=always -p 8000:8000 tysongf/exoplex
 
 ## EC2 Continuous Deployment
+
 1. sudo service docker start
 2. docker login
 3. docker pull -t tysongf/exoplex:latest
