@@ -48,5 +48,5 @@ To run any automated tests, run `npm test`. This will:
 3. docker pull -t tysongf/exoplex:latest
 4. docker ps
 5. docker stop [container_id]
-6. docker image --force rm tysongf/exoplex
+6. docker image rm --force tysongf/exoplex
 7. docker run --restart=always -p 8000:8000 tysongf/exoplex
