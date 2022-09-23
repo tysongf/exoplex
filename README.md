@@ -2,8 +2,6 @@
 
 Kepler Exoplanet Explorer
 
-<a href="http://www.neologic.ca:8000/">Live Demo</a>
-
 ![exoplex architecture](https://github.com/tysongf/exoplex/blob/master/exoplex_architecture.png?raw=true)
 
 ## Getting Started
